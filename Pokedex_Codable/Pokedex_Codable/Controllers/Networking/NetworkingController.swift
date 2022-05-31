@@ -8,7 +8,7 @@
 import Foundation
 import UIKit.UIImage
 
-class NetworkingController {
+struct NetworkingController {
     
     private static let baseURLString = "https://pokeapi.co"
     
@@ -34,16 +34,11 @@ class NetworkingController {
         }.resume()
     }
     //MARK: EndPoint 2
-    static func fetchPokemon(with searchTerm: String, completion: @escaping (Result<Pokemon,ResultError>) -> Void) {
+    static func fetchPokemon(with pokemonURLString: String, completion: @escaping (Result<Pokemon,ResultError>) -> Void) {
         
-        guard let baseURL = URL(string: baseURLString) else {return}
-        var urlComponents = URLComponents(url: baseURL, resolvingAgainstBaseURL: true)
-        urlComponents?.path = "/api/v2/pokemon/\(searchTerm.lowercased())"
-
-        guard let finalURL = urlComponents?.url else {
-            completion(.failure(.invalidURL((urlComponents?.url)!)))
-            return}
-        print(finalURL)
+        guard let finalURL = URL(string: pokemonURLString) else {completion(.failure(.invalidURL(URL(string: pokemonURLString)!)))
+            return
+        }
         
         URLSession.shared.dataTask(with: finalURL) { dTaskData, _, error in
             if let error = error {

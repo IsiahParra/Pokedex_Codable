@@ -22,10 +22,12 @@ struct Pokemon: Decodable {
         case name = "name"
         case id = "id"
         case sprites = "sprites"
+        case moves = "moves"
     }
     let name: String
     let id: Int
     let sprites: Sprites
+//    let move: Move
 }
 
 struct Sprites: Decodable {
@@ -40,3 +42,18 @@ struct Sprites: Decodable {
     let frontFemale: String?
     let frontShinyFemale: String?
 }
+
+//struct Moves: Decodable {
+//    private enum CodingKeys: String, CodingKey {
+//        case move = "move"
+//    }
+//    let move: Move
+//}
+//struct Move: Decodable {
+//    private enum CodingKeys: String, CodingKey {
+//        case moveName = "name"
+//        case moveURL = "url"
+//    }
+//    let moveName: String
+//    let moveURL: String
+//}
