@@ -31,7 +31,7 @@ class PokemonTableViewCell: UITableViewCell {
     }
     
     func fetchImage(for pokemon: Pokemon) {
-        NetworkingController.fetchImage(for: pokemon) { [weak self] result in
+        NetworkingController.fetchImage(for: pokemon.sprites.frontShiny) { [weak self] result in
             switch result {
             case.success(let image):
                 DispatchQueue.main.async {

@@ -9,6 +9,11 @@ import Foundation
 // TOP LEVEL DICTIONARY
 // End point 1
 struct Pokedex: Decodable {
+    private enum CodingKeys: String, CodingKey {
+        case next = "next"
+        case results
+    }
+    let next: String
     let results: [ResultsDictionary]
 }
 
@@ -27,7 +32,7 @@ struct Pokemon: Decodable {
     let name: String
     let id: Int
     let sprites: Sprites
-//    let move: Move
+    let moves: [Moves]
 }
 
 struct Sprites: Decodable {
@@ -43,17 +48,17 @@ struct Sprites: Decodable {
     let frontShinyFemale: String?
 }
 
-//struct Moves: Decodable {
-//    private enum CodingKeys: String, CodingKey {
-//        case move = "move"
-//    }
-//    let move: Move
-//}
-//struct Move: Decodable {
-//    private enum CodingKeys: String, CodingKey {
-//        case moveName = "name"
-//        case moveURL = "url"
-//    }
-//    let moveName: String
-//    let moveURL: String
-//}
+struct Moves: Decodable {
+    private enum CodingKeys: String, CodingKey {
+        case move = "move"
+    }
+    let move: Move
+}
+struct Move: Decodable {
+    private enum CodingKeys: String, CodingKey {
+        case moveName = "name"
+       
+    }
+    let moveName: String
+    
+}
